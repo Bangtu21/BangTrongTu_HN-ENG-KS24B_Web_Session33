@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Bai1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: #f0f8ff;
+            font-family: "Roboto";
+        }
+        .infor{
+            display: flex;
+        }
+        .nameApp{
+            display: flex;
+            justify-content: center;
+            color: #0066cc;
+        }
+        .search{
+            display: flex;
+            justify-content: center;
+        }
+        input{
+            width: 350px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #dce1e9;
+        }
+        button{
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: -10px;
+        }
+        .weatherBorder{
+            width: 390px;
+            border: none;
+            padding: 10px;
+            margin-left: 500px;
+            background-color: white;
+            border-radius: 5px;
+            display: none;
+        }
+        .element{
+            line-height: 5px;
+        }
+        .icon{
+            font-size: 250%;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .infor{
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nameApp">
+        <h1>Ứng dụng Thời tiết</h1>
+    </div>
+    <div class="search">
+        <input type="text" name="search" id="search">
+        <button id="btnSearch">Tìm kiếm</button>
+    </div>
+    <br>
+    <div class="weatherBorder">
+        <div class="nameAdress">
+            <h2></h2>
+            <div class="infor">
+                <div class="icon">
+                    <h1></h1>
+                </div>
+                <div class="C">
+                    <h1></h1>
+                </div>
+                <div class="element">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let weatherData = {
+            "Hà Nội": {
+                temperature: 25,
+                humidity: 70,
+                windSpeed: 5,
+                description: "Có mây",
+                icon: "☁️"
+            },
+            "Hồ Chí Minh": {
+                temperature: 32,
+                humidity: 75,
+                windSpeed: 7,
+                description: "Nắng",
+                icon: "☀️"
+            },
+            "Đà Nẵng": {
+                temperature: 28,
+                humidity: 82,
+                windSpeed: 12,
+                description: "Mưa rào",
+                icon: "🌧️"
+            }
+        };
+
+        document.getElementById("btnSearch").onclick = function(){
+            let searchValue = document.getElementById("search").value;
+            let weatherInfo = weatherData[searchValue];
+    
+            if(weatherInfo){
+                document.querySelector(".nameAdress h2").textContent = searchValue;
+                document.querySelector(".icon h1").textContent = weatherInfo.icon;
+                document.querySelector(".C h1").textContent = weatherInfo.temperature + "°C";
+                document.querySelector(".element").innerHTML = `
+                    <p>${weatherInfo.description}</p>
+                    <p>Độ ẩm: ${weatherInfo.humidity}%</p>
+                    <p>Tốc độ gió: ${weatherInfo.windSpeed} km/h</p>
+                `;
+                document.querySelector(".weatherBorder").style.display = "block";
+            }else{
+                alert("Lỗi");
+            }
+        };
+    </script>
+</body>
+</html>
